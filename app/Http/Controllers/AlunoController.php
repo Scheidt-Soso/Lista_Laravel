@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluno;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
     public function index()
     {
-        return 'Lista de todos os alunos';
+        $alunos = Aluno::all();
+
+        return view('alunos.index', compact('alunos'));
     }
 
     public function create()
@@ -23,7 +26,9 @@ class AlunoController extends Controller
 
     public function show($id)
     {
-        return "Exibindo dados do aluno de ID: {$id}";
+        $aluno = Aluno::findOrFail($id);
+
+        return view('alunos.show', compact('aluno'));
     }
 
     public function edit($id)
@@ -39,5 +44,15 @@ class AlunoController extends Controller
     public function destroy($id)
     {
         return "Aluno de ID: {$id} removido com sucesso";
+    }
+
+    public function consultas()
+    {
+        $alunosDoCurso = Aluno::deCurso('Informática')->get();
+        $porPalavra = Aluno::nomeContem('Ana')->get();
+        $recentes = Aluno::recentes()->take(5)->get();
+        $quantidade = Aluno::count();
+
+        return view('alunos.consultas', compact('alunosDoCurso', 'porPalavra', 'recentes', 'quantidade'));
     }
 }
