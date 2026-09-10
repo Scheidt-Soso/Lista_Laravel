@@ -15,7 +15,13 @@ class Aluno extends Model
         'telefone',
         'curso',
         'matricula',
+        'curso_id',
     ];
+
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class);
+    }
 
     public function scopeDeCurso($query, $curso)
     {
