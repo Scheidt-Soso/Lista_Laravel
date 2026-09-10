@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AlunoRequest;
 use App\Models\Aluno;
+use App\Models\Curso;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
@@ -60,5 +61,12 @@ class AlunoController extends Controller
         $quantidade = Aluno::count();
 
         return view('alunos.consultas', compact('alunosDoCurso', 'porPalavra', 'recentes', 'quantidade'));
+    }
+
+    public function porCurso()
+    {
+        $cursos = Curso::with('alunos')->get();
+
+        return view('alunos.por-curso', compact('cursos'));
     }
 }

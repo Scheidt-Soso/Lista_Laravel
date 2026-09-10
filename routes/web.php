@@ -28,5 +28,6 @@ Route::get('/usuario/{id}', function ($id) {
 });
 
 Route::get('/alunos/consultas', [AlunoController::class, 'consultas'])->name('alunos.consultas');
+Route::get('/alunos/por-curso', [AlunoController::class, 'porCurso'])->name('alunos.por-curso');
 
 Route::resource('alunos', AlunoController::class);
