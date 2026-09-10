@@ -37,6 +37,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return 'Painel do Administrador (apenas admin).';
+    })->name('admin.index');
+
+    Route::get('/alunos', [AlunoController::class, 'index'])->name('admin.alunos');
+});
+
+Route::middleware(['auth', 'role:professor,admin'])->prefix('professor')->group(function () {
+    Route::get('/', function () {
+        return 'Área do Professor (permitido para professor e admin).';
+    })->name('professor.index');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
