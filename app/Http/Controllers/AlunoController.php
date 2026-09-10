@@ -7,11 +7,14 @@ use App\Http\Requests\AlunoRequest;
 use App\Models\Aluno;
 use App\Models\Curso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AlunoController extends Controller
 {
     public function index()
     {
+        Gate::authorize('viewAny', Aluno::class);
+
         $alunos = Aluno::orderBy('created_at', 'desc')->get();
 
         return view('alunos.index', compact('alunos'));
@@ -19,11 +22,15 @@ class AlunoController extends Controller
 
     public function create()
     {
+        Gate::authorize('create', Aluno::class);
+
         return view('alunos.create');
     }
 
     public function store(AlunoRequest $request)
     {
+        Gate::authorize('create', Aluno::class);
+
         Aluno::create($request->validated());
 
         return redirect()->route('alunos.index')->with('sucesso', 'Aluno cadastrado com sucesso!');
@@ -31,16 +38,22 @@ class AlunoController extends Controller
 
     public function show(Aluno $aluno)
     {
+        Gate::authorize('view', $aluno);
+
         return view('alunos.show', compact('aluno'));
     }
 
     public function edit(Aluno $aluno)
     {
+        Gate::authorize('update', $aluno);
+
         return view('alunos.edit', compact('aluno'));
     }
 
     public function update(AlunoRequest $request, Aluno $aluno)
     {
+        Gate::authorize('update', $aluno);
+
         $aluno->update($request->validated());
 
         return redirect()->route('alunos.index')->with('sucesso', 'Aluno atualizado com sucesso!');
@@ -48,6 +61,8 @@ class AlunoController extends Controller
 
     public function destroy(Aluno $aluno)
     {
+        Gate::authorize('delete', $aluno);
+
         $aluno->delete();
 
         return redirect()->route('alunos.index')->with('sucesso', 'Aluno removido com sucesso!');
