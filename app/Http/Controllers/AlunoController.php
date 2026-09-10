@@ -9,41 +9,45 @@ class AlunoController extends Controller
 {
     public function index()
     {
-        $alunos = Aluno::all();
+        $alunos = Aluno::orderBy('created_at', 'desc')->get();
 
         return view('alunos.index', compact('alunos'));
     }
 
     public function create()
     {
-        return 'Formulário para cadastrar um novo aluno';
+        return view('alunos.create');
     }
 
     public function store(Request $request)
     {
-        return 'Aluno cadastrado com sucesso';
+        Aluno::create($request->all());
+
+        return redirect()->route('alunos.index')->with('sucesso', 'Aluno cadastrado com sucesso!');
     }
 
-    public function show($id)
+    public function show(Aluno $aluno)
     {
-        $aluno = Aluno::findOrFail($id);
-
         return view('alunos.show', compact('aluno'));
     }
 
-    public function edit($id)
+    public function edit(Aluno $aluno)
     {
-        return "Formulário de edição do aluno de ID: {$id}";
+        return view('alunos.edit', compact('aluno'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Aluno $aluno)
     {
-        return "Aluno de ID: {$id} atualizado com sucesso";
+        $aluno->update($request->all());
+
+        return redirect()->route('alunos.index')->with('sucesso', 'Aluno atualizado com sucesso!');
     }
 
-    public function destroy($id)
+    public function destroy(Aluno $aluno)
     {
-        return "Aluno de ID: {$id} removido com sucesso";
+        $aluno->delete();
+
+        return redirect()->route('alunos.index')->with('sucesso', 'Aluno removido com sucesso!');
     }
 
     public function consultas()
