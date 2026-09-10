@@ -16,11 +16,17 @@ class Aluno extends Model
         'curso',
         'matricula',
         'curso_id',
+        'user_id',
     ];
 
     public function curso()
     {
         return $this->belongsTo(Curso::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function scopeDeCurso($query, $curso)
