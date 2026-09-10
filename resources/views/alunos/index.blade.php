@@ -4,5 +4,16 @@
 
 @section('conteudo')
     <h1>Lista de Alunos</h1>
-    <p>Aqui será exibida a listagem dos alunos cadastrados.</p>
+
+    @include('partials.alerta')
+
+    @if (empty($alunos))
+        <p>Nenhum aluno cadastrado até o momento.</p>
+    @else
+        <ul>
+            @foreach ($alunos as $aluno)
+                <li>{{ $aluno }}</li>
+            @endforeach
+        </ul>
+    @endif
 @endsection
