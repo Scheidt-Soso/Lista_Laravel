@@ -20,6 +20,42 @@
             padding: 20px;
         }
 
+        nav.menu {
+            background-color: #2c3e50;
+            padding: 10px 0;
+        }
+
+        nav.menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav.menu li {
+            margin: 0 15px;
+        }
+
+        nav.menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav.menu a:hover {
+            text-decoration: underline;
+        }
+
+        .aviso-sucesso {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
         footer {
             margin-top: 40px;
             padding: 15px 0;
