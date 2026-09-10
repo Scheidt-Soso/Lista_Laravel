@@ -1,58 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Lista Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Projeto desenvolvido em Laravel para a disciplina, abordando os principais conceitos do framework por meio de temas e atividades práticas.
 
-## About Laravel
+## Integrantes
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Scheidt-Soso (scheidtsalves@gmail.com)
+- EJSeguro (eduardojosesegurodeoliveira@gmail.com)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Estrutura (Temas e Atividades)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Cada tema foi desenvolvido em uma branch e cada atividade corresponde a um commit.
 
-## Learning Laravel
+### Tema 1: Rotas
+- **ATV 1:** Rotas `/sobre`, `/alunos` e `/contato`, retornando texto;
+- **ATV 2:** Rotas com parâmetro `/produto/{id}`, `/categoria/{id}` e `/usuario/{id}`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Tema 2: Controllers
+- **ATV 3:** `AlunoController`;
+- **ATV 4:** Métodos CRUD `index()`, `show()`, `create()`, `store()`, `edit()`, `update()` e `destroy()`.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Tema 3: Views
+- **ATV 5:** Pasta `resources/views/alunos`;
+- **ATV 6:** Views principais da aplicação.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Tema 4: Blade
+- **ATV 7:** Layout em `resources/views/layouts/app.blade.php`;
+- **ATV 8:** Páginas `home`, `alunos/index`, `alunos/show` e `alunos/create`;
+- **ATV 9:** Diretivas `@extends`, `@section`, `@include`, `@if` e `@foreach`;
+- **DESAFIO:** Menu de navegação compartilhado por todas as views.
 
-## Agentic Development
+### Tema 5: Models e Eloquent
+- **ATV 10:** Model `Aluno`;
+- **ATV 11:** Consultas por curso, por nome, cadastros recentes e quantidade de alunos.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Tema 6: Seeders
+- **ATV 12:** `AlunoSeeder` com 10 alunos gerados.
+
+### Tema 7: CRUD
+- **ATV 13:** CRUD completo para Alunos no controller.
+
+### Tema 8: Forms e Requests
+- **ATV 14:** Formulário de cadastro de Aluno;
+- **ATV 15:** Request de validações para Alunos;
+- **DESAFIO:** Mensagens personalizadas para as validações.
+
+### Tema 9: Relacionamentos
+- **ATV 16:** Model `Curso`, relacionado com `Aluno`;
+- **ATV 17:** Relacionamento via chave estrangeira;
+- **DESAFIO:** View que exibe todos os alunos vinculados aos seus cursos.
+
+### Tema 10: Autenticação
+- **ATV 18:** Breeze adicionado ao projeto;
+- **ATV 19:** Relacionamento entre `User` e `Aluno`;
+- **ATV 20:** Campo `role` no `User` (admin e professor).
+
+### Tema 11: Middleware
+- **ATV 21:** Middleware de controle de acesso para rotas como `/admin` e `/professor`.
+
+### Tema 12: Policies
+- **ATV 22:** Policy para proteger ações sobre um registro;
+- **ATV 23:** Apenas Admin cadastra e exclui Aluno; Professor pode editar.
+
+## Como executar
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+npm install
+npm run build
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Branches
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Branch                | Tema                     |
+|-----------------------|--------------------------|
+| `tema-1-rotas`        | Rotas                    |
+| `tema-2-controllers`  | Controllers              |
+| `tema-3-views`        | Views                    |
+| `tema-4-blade`        | Blade                    |
+| `tema-5-models`       | Models e Eloquent        |
+| `tema-6-seeders`      | Seeders                  |
+| `tema-7-crud`         | CRUD                     |
+| `tema-8-forms`        | Forms e Requests         |
+| `tema-9-relacionamentos` | Relacionamentos       |
+| `tema-10-auth`        | Autenticação             |
+| `tema-11-middleware`  | Middleware               |
+| `tema-12-policies`    | Policies                 |
