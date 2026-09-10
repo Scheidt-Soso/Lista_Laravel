@@ -5,6 +5,16 @@
 @section('conteudo')
     <h1>Cadastro de Novo Aluno</h1>
 
+    @if ($errors->any())
+        <div class="aviso-erro">
+            <ul>
+                @foreach ($errors->all() as $erro)
+                    <li>{{ $erro }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('alunos.store') }}" method="POST">
         @csrf
 
